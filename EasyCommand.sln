@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyCommand.Examples.AspNet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCommand.Examples.ConsoleApp", "EasyCommand.Examples.ConsoleApp\EasyCommand.Examples.ConsoleApp.csproj", "{1956A942-2B5D-4F88-BA78-30F8D2E260E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCommand.Examples.ConsoleApp.Tests", "EasyCommand.Examples.ConsoleApp.Tests\EasyCommand.Examples.ConsoleApp.Tests.csproj", "{36A12F7E-294E-4C3B-B3FE-8C30715EC864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1956A942-2B5D-4F88-BA78-30F8D2E260E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1956A942-2B5D-4F88-BA78-30F8D2E260E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1956A942-2B5D-4F88-BA78-30F8D2E260E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A12F7E-294E-4C3B-B3FE-8C30715EC864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A12F7E-294E-4C3B-B3FE-8C30715EC864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A12F7E-294E-4C3B-B3FE-8C30715EC864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A12F7E-294E-4C3B-B3FE-8C30715EC864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

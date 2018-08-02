@@ -1,5 +1,6 @@
 ﻿using EasyCommand.Examples.ConsoleApp.Commands;
 using System;
+using System.Threading.Tasks;
 
 namespace EasyCommand.Examples.ConsoleApp
 {
@@ -11,7 +12,18 @@ namespace EasyCommand.Examples.ConsoleApp
             
             executor.ExecuteCommand(new OutputPlatformCommand());
 
-            Console.Read();
+            Console.ReadLine();
+
+            MainAsync(args).Wait();
+        }
+
+        static async Task MainAsync(string[] args)
+        {
+            var executor = new CommandExecutor();
+
+            await executor.ExecuteCommandAsync(new AsyncOutputPlatformCommand());
+
+            Console.ReadLine();
         }
     }
 }

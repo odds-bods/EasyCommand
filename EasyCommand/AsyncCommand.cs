@@ -14,17 +14,17 @@ namespace EasyCommand
 
     public abstract class AsyncCommandNoRequest<TResult> : AsyncCommand<EmptyCommandRequest, TResult>
     {
-        public static readonly EmptyCommandRequest EmptyRequest = default(EmptyCommandRequest);
+        public static readonly Task<EmptyCommandRequest> EmptyRequest = Task.FromResult(default(EmptyCommandRequest));
     }
 
     public abstract class AsyncCommandNoResult<TRequest> : AsyncCommand<TRequest, EmptyCommandResult>
     {
-        public static readonly EmptyCommandResult EmptyResult = default(EmptyCommandResult);
+        public static readonly Task<EmptyCommandResult> EmptyResult = Task.FromResult(default(EmptyCommandResult));
     }
 
     public abstract class AsyncCommandNoRequestNoResult : AsyncCommand<EmptyCommandRequest, EmptyCommandResult>
     {
-        public static readonly EmptyCommandRequest EmptyRequest = default(EmptyCommandRequest);
-        public static readonly EmptyCommandResult EmptyResult = default(EmptyCommandResult);
+        public static readonly Task<EmptyCommandRequest> EmptyRequest = Task.FromResult(default(EmptyCommandRequest));
+        public static readonly Task<EmptyCommandResult> EmptyResult = Task.FromResult(default(EmptyCommandResult));
     }
 }
