@@ -10,41 +10,41 @@ namespace EasyCommand.Examples.AspNetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : CommandController
+    public class ValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            return ExecuteCommand(new GetCommand());
+            return await this.ExecuteAsync(this.Command<GetCommand>());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<string>> Get(int id)
         {
-            return ExecuteCommand(new GetCommandParamId(), id);
+            return await this.ExecuteAsync(this.Command<GetCommandParamId>(), id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post([FromBody] string value)
         {
-            ExecuteCommand(new PostCommand(), value);
+            await this.ExecuteAsync(this.Command<PostCommand>(), value);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task Put(int id, [FromBody] string value)
         {
-            ExecuteCommand(new PutCommand(), new PutCommandRequest(id, value));
+            await this.ExecuteAsync(this.Command<PutCommand>(), new PutCommandRequest(id, value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            ExecuteCommand(new DeleteCommand(), id);
+            await this.ExecuteAsync(this.Command<DeleteCommand>(), id);
         }
     }
 }

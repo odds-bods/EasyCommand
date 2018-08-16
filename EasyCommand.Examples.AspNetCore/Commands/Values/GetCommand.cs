@@ -1,12 +1,13 @@
 ﻿using EasyCommand.AspNetCore;
+using System.Threading.Tasks;
 
 namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
-    public class GetCommand : AspCommandNoRequest<string[]>
+    public class GetCommand : AsyncAspCommandNoRequest<string[]>
     {
-        protected override string[] Execute(EmptyCommandRequest request)
+        protected override Task<string[]> ExecuteAsync(EmptyCommandRequest request)
         {
-            return new string[] { "value1", "value2" };
+            return Task.FromResult(new string[] { "value1", "value2" });
         }
     }
 }

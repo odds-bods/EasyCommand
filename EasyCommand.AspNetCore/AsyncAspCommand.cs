@@ -1,12 +1,14 @@
-﻿namespace EasyCommand.AspNetCore
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace EasyCommand.AspNetCore
 {
     public abstract class AsyncAspCommand<TRequest, TResult> : AsyncCommand<TRequest, TResult>, IAsyncAspCommand<TRequest, TResult>
     {
-        protected CommandController Context { get; private set; }
+        protected ControllerBase Controller { get; private set; }
 
-        public IAsyncAspCommand<TRequest, TResult> SetContext(CommandController context)
+        public IAsyncAspCommand<TRequest, TResult> SetController(ControllerBase controller)
         {
-            Context = context;
+            Controller = controller;
             return this;
         }
     }

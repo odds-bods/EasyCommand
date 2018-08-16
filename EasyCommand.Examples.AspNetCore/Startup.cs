@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyCommand.AspNetCore;
-using EasyCommand.Examples.AspNetCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +27,6 @@ namespace EasyCommand.Examples.AspNetCore
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddSingleton<ISomeService, SomeService>();
-            
             services.AddEasyCommand(this);
         }
 

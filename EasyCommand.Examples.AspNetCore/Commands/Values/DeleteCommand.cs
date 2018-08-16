@@ -1,12 +1,13 @@
 ﻿using EasyCommand.AspNetCore;
+using System.Threading.Tasks;
 
 namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
-    public class DeleteCommand : AspCommandNoResult<int>
+    public class DeleteCommand : AsyncAspCommandNoResult<int>
     {
-        protected override EmptyCommandResult Execute(int request)
+        protected override Task<EmptyCommandResult> ExecuteAsync(int request)
         {
-            return EmptyResult;
+            return Task.FromResult(EmptyResult);
         }
     }
 }

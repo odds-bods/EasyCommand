@@ -1,12 +1,13 @@
 ﻿using EasyCommand.AspNetCore;
+using System.Threading.Tasks;
 
 namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
-    public class PostCommand : AspCommand<string, EmptyCommandResult>
+    public class PostCommand : AsyncAspCommand<string, EmptyCommandResult>
     {
-        protected override EmptyCommandResult Execute(string request)
+        protected override Task<EmptyCommandResult> ExecuteAsync(string request)
         {
-            return default(EmptyCommandResult);
+            return Task.FromResult(default(EmptyCommandResult));
         }
     }
 }
