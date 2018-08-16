@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
-    public class PostCommand : AsyncAspCommand<string, EmptyCommandResult>
+    public class PostCommand : AsyncAspCommandNoResult<string>
     {
         protected override Task<EmptyCommandResult> ExecuteAsync(string request)
         {
