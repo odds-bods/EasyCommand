@@ -10,7 +10,7 @@ namespace EasyCommand.Examples.AspNetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AsyncValuesController : CommandController
+    public class AsyncValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
