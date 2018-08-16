@@ -16,35 +16,35 @@ namespace EasyCommand.Examples.AspNetCore.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            return await ExecuteCommandAsync(new GetCommand());
+            return await this.ExecuteAsync(this.Command<GetCommand>());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public async Task<ActionResult<string>> Get(int id)
         {
-            return await ExecuteCommandAsync(new GetCommandParamId(), id);
+            return await this.ExecuteAsync(this.Command<GetCommandParamId>(), id);
         }
 
         // POST api/values
         [HttpPost]
         public async Task Post([FromBody] string value)
         {
-            await ExecuteCommandAsync(new PostCommand(), value);
+            await this.ExecuteAsync(this.Command<PostCommand>(), value);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public async Task Put(int id, [FromBody] string value)
         {
-            await ExecuteCommandAsync(new PutCommand(), new PutCommandRequest(id, value));
+            await this.ExecuteAsync(this.Command<PutCommand>(), new PutCommandRequest(id, value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            await ExecuteCommandAsync(new DeleteCommand(), id);
+            await this.ExecuteAsync(this.Command<DeleteCommand>(), id);
         }
     }
 }
