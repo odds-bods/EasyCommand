@@ -8,6 +8,6 @@ namespace EasyCommand
 
     public interface IAsyncCommand<TRequest, TResult> : IAsyncCommand
     {
-        Task<TResult> ExecuteCommandAsync(TRequest request);
+        Task<TResult> ExecuteExternalAsync(TRequest request);
     }
 }

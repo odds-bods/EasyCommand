@@ -5,7 +5,7 @@ namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
     public class PutCommand : AsyncAspCommand<PutCommandRequest, EmptyCommandResult>
     {
-        protected override Task<EmptyCommandResult> ExecuteAsync(PutCommandRequest request)
+        protected override Task<EmptyCommandResult> ExecuteCommandAsync(PutCommandRequest request)
         {
             return Task.FromResult(default(EmptyCommandResult));
         }

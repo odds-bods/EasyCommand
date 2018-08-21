@@ -4,12 +4,12 @@ namespace EasyCommand
 {
     public abstract class AsyncCommand<TRequest, TResult> : IAsyncCommand<TRequest, TResult>
     {
-        public async Task<TResult> ExecuteCommandAsync(TRequest request)
+        public async Task<TResult> ExecuteExternalAsync(TRequest request)
         {
-            return await ExecuteAsync(request);
+            return await ExecuteCommandAsync(request);
         }
 
-        protected abstract Task<TResult> ExecuteAsync(TRequest request);
+        protected abstract Task<TResult> ExecuteCommandAsync(TRequest request);
     }
 
     public abstract class AsyncCommandNoRequest<TResult> : AsyncCommand<EmptyCommandRequest, TResult>

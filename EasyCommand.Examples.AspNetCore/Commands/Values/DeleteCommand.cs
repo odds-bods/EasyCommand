@@ -5,7 +5,7 @@ namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
     public class DeleteCommand : AsyncAspCommandNoResult<int>
     {
-        protected override Task<EmptyCommandResult> ExecuteAsync(int request)
+        protected override Task<EmptyCommandResult> ExecuteCommandAsync(int request)
         {
             return Task.FromResult(EmptyResult);
         }

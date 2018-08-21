@@ -13,19 +13,27 @@ namespace EasyCommand.AspNetCore
             Scope = scope;
         }
 
-        public static async Task<TResult> ExecuteAsync<TRequest, TResult>(this ControllerBase that, IAsyncAspCommand<TRequest, TResult> command)
+        public static async Task<TResult> ExecuteAsync<TRequest, TResult>(this object that, IAsyncAspCommand<TRequest, TResult> command)
         {
-            command.SetController(that);
-            return await command.ExecuteCommandAsync(default(TRequest));
+            if (that is ControllerBase)
+            {
+                command.SetController((ControllerBase)that);
+            }
+
+            return await command.ExecuteExternalAsync(default(TRequest));
         }
 
-        public static async Task<TResult> ExecuteAsync<TRequest, TResult>(this ControllerBase that, IAsyncAspCommand<TRequest, TResult> command, TRequest request)
+        public static async Task<TResult> ExecuteAsync<TRequest, TResult>(this object that, IAsyncAspCommand<TRequest, TResult> command, TRequest request)
         {
-            command.SetController(that);
-            return await command.ExecuteCommandAsync(request);
+            if (that is ControllerBase)
+            {
+                command.SetController((ControllerBase)that);
+            }
+
+            return await command.ExecuteExternalAsync(request);
         }
 
-        public static TCommand Command<TCommand>(this ControllerBase that)
+        public static TCommand Command<TCommand>(this object that)
             where TCommand : IAsyncCommand
         {
             return Scope.ServiceProvider.GetService<TCommand>();

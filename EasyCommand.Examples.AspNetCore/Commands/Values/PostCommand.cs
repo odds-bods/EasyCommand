@@ -5,7 +5,7 @@ namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
     public class PostCommand : AsyncAspCommandNoResult<string>
     {
-        protected override Task<EmptyCommandResult> ExecuteAsync(string request)
+        protected override Task<EmptyCommandResult> ExecuteCommandAsync(string request)
         {
             return Task.FromResult(default(EmptyCommandResult));
         }

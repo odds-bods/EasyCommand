@@ -5,7 +5,7 @@ namespace EasyCommand.Examples.AspNetCore.Commands.Values
 {
     public class GetCommandParamId : AsyncAspCommand<int, string>
     {
-        protected override Task<string> ExecuteAsync(int request)
+        protected override Task<string> ExecuteCommandAsync(int request)
         {
             return Task.FromResult("value");
         }
