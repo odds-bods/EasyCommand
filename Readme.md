@@ -24,7 +24,7 @@ public class GetCommandParamId : AsyncAspCommand<int, string>
 
 You can execute commands straight from an ASP.NET Core controller.
 
-```
+```csharp
 [HttpGet]
 public async Task<ActionResult<IEnumerable<string>>> Get()
 {
