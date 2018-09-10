@@ -1,5 +1,9 @@
 # EasyCommand
 
+## Installation
+EasyCommand.AspNetCore is in pre-release and is available as a [NuGet package](https://www.nuget.org/packages/EasyCommand.AspNetCore/1.0.0-CI-20180821-153641).
+
+## Description
 EasyCommand trivialises the use of the command pattern in .NET Core and ASP.NET Core.
 
 ```csharp
