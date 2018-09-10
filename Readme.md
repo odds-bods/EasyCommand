@@ -22,7 +22,7 @@ public class GetCommandParamId : AsyncAspCommand<int, string>
 }
 ```
 
-You can execute commands straight from an ASP.NET Core controller.
+You can execute commands straight from an ASP.NET Core controller (so you can better componentise your code) and this can assist with separating application protocol and business logic.
 
 ```csharp
 [HttpGet]
