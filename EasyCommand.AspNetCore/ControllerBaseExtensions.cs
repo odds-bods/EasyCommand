@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EasyCommand.AspNetCore
 {
@@ -15,6 +16,11 @@ namespace EasyCommand.AspNetCore
 
         public static async Task<TResult> ExecuteAsync<TRequest, TResult>(this object that, IAsyncAspCommand<TRequest, TResult> command)
         {
+            if (that is ControllerBase)
+            {
+                command.SetController((ControllerBase)that);
+            }
+
             await ExecuteBeforeCommand(); 
 
             return await command.ExecuteExternalAsync(default(TRequest));
@@ -22,6 +28,11 @@ namespace EasyCommand.AspNetCore
 
         public static async Task<TResult> ExecuteAsync<TRequest, TResult>(this object that, IAsyncAspCommand<TRequest, TResult> command, TRequest request)
         {
+            if (that is ControllerBase)
+            {
+                command.SetController((ControllerBase)that);
+            }
+
             await ExecuteBeforeCommand();
 
             return await command.ExecuteExternalAsync(request);
