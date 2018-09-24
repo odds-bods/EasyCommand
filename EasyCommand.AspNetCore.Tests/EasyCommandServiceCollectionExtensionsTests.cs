@@ -34,22 +34,10 @@ namespace EasyCommand.AspNetCore.Tests
         }
 
         [Fact]
-        public void SuccessfullyRegistersRunBeforeCommand()
-        {
-            var services = CreateServiceProvider(
-                    t => t.AddEasyCommand(c=>c.RunBeforeCommand<RunBeforeCommandExample>()));
-
-            var runBeforeComamnds = services.GetServices<IRunBeforeCommand>();
-
-            Assert.NotNull(runBeforeComamnds);
-            Assert.Contains(runBeforeComamnds, t => t.GetType() == typeof(RunBeforeCommandExample));
-        }
-
-        [Fact]
         public void SuccessfullyRegistersCustomHandler()
         {
             var services = CreateServiceProvider(
-                    t => t.AddEasyCommand(c=>c.UseHandler<ExampleHandler>()));
+                    t => t.AddEasyCommand(c=>c.AddControllerCommandHandler<ExampleHandler>()));
 
             var runBeforeComamnds = services.GetServices<IAsyncAspCommandHandler>();
 
