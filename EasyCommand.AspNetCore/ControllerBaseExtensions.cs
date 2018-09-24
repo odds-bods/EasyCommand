@@ -63,13 +63,13 @@ namespace EasyCommand.AspNetCore
             catch (Exception e)
             {
                 var message = $"Failed to run  Execute on {handlers[handlerIndex].GetType()}";
-                await RunHandlersAfterMethods<TResult>
+                await RunHandlersAfterMethods
                           (handlers, commandType, result, handlerIndex, message);
                 throw new Exception(message, e);
             }
             finally
             {
-                await RunHandlersAfterMethods<TResult>
+                await RunHandlersAfterMethods
                     (handlers, commandType, result, handlerIndex);
             }
 
@@ -104,7 +104,7 @@ namespace EasyCommand.AspNetCore
 
                     var result = default(TResult);
 
-                    await RunHandlersAfterMethods<TResult>
+                    await RunHandlersAfterMethods
                            (handlers, command, result, handlerIndex, message);
                     throw new Exception(message, e);
                 }
@@ -118,11 +118,9 @@ namespace EasyCommand.AspNetCore
 
             for (var i = handlerIndex; i >= 0; i--)
             {
-                // try catch around each of these
-                // try catch around each of these
                 try
                 {
-                    await handlers[i].AfterExecutionAsync<TResult>(command, result);
+                    await handlers[i].AfterExecutionAsync(command, result);
                 }
                 catch (Exception e)
                 {
