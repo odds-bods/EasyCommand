@@ -1,21 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EasyCommand.AspNetCore
 {
     public class CommandRunningConfiguration
     {
-        internal List<Type> toRunBeforeCommands { get; set; }
+        internal static Type[] Handlers { get; private set; } = new Type[0];
 
-        public CommandRunningConfiguration()
+        /// <summary>
+        /// Sets the handler to use when executing commands from the controller base extension, this handler is not called when calling from command to command
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public CommandRunningConfiguration AddControllerCommandHandler<T>() where T : IAsyncAspCommandHandler
         {
-            toRunBeforeCommands = new List<Type>();
-        }
+            var newHandlers = new Type[Handlers.Length + 1];
 
-        public void RunBeforeCommand<T>() where T : IRunBeforeCommand
-        {
-            toRunBeforeCommands.Add(typeof(T));
+            for (var i = 0; i < Handlers.Length; i++)
+            {
+                newHandlers[i] = Handlers[i];
+            }
+
+            newHandlers[Handlers.Length] = typeof(T);
+
+            Handlers = newHandlers;
+
+            return this;
         }
+      
     }
 }
