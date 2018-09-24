@@ -39,7 +39,7 @@ namespace EasyCommand.AspNetCore.Tests
             var services = CreateServiceProvider(
                     t => t.AddEasyCommand(c=>c.AddControllerCommandHandler<ExampleHandler>()));
 
-            var runBeforeComamnds = services.GetServices<IAsyncAspCommandHandler>();
+            var runBeforeComamnds = services.GetServices<ExampleHandler>();
 
             Assert.NotNull(runBeforeComamnds);
             Assert.Contains(runBeforeComamnds, t => t.GetType() == typeof(ExampleHandler));
