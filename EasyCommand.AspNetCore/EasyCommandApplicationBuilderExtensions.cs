@@ -11,6 +11,7 @@ namespace EasyCommand.AspNetCore
 
             // TOOD: Might be a more elegant way to do this.
             ControllerBaseExtensions.RegisterScope(scope);
+            AsyncAspCommandExtensions.RegisterScope(scope);
 
             return app;
         }
