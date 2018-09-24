@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace EasyCommand.AspNetCore
 {
     public interface IAsyncAspCommandHandler
     {
-        Task<TResult> ExecuteCommand<TRequest, TResult>(IAsyncAspCommand<TRequest, TResult> command, TRequest request);
+        Task BeforeExecutionAsync<TRequest>(Type command, TRequest request);
+
+        Task AfterExecutionAsync<TResponse>(Type command, TResponse response);
     }
 }
