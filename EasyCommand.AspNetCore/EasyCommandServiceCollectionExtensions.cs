@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
-using Microsoft.AspNetCore.Hosting;
 
 namespace EasyCommand.AspNetCore
 {
     public static class EasyCommandServiceCollectionExtensions
     {
-        public static IServiceCollection AddEasyCommand(this IServiceCollection services, IStartup assemblyObject, Action<CommandRunningConfiguration> buildConfiguration = null)
+        public static IServiceCollection AddEasyCommand(this IServiceCollection services, object assemblyObject, Action<CommandRunningConfiguration> buildConfiguration = null)
         {
             var types = assemblyObject.GetType().Assembly.GetTypes();
 
@@ -25,7 +24,7 @@ namespace EasyCommand.AspNetCore
         }
 
         private static IServiceCollection SetupEasyCommand(this IServiceCollection services, IEnumerable<Type> allTypes, Action<CommandRunningConfiguration> buildConfiguration = null)
-        {   
+        {
             services.RegisterCommands(allTypes);
 
             if (buildConfiguration is null)
@@ -34,8 +33,7 @@ namespace EasyCommand.AspNetCore
             var configuration = new CommandRunningConfiguration();
             buildConfiguration(configuration);
 
-            if (configuration.toRunBeforeCommands.Any())
-                RegisterRunningBeforeCommands(services, configuration);
+            services.RegisterHandlers();
 
             return services;
         }
@@ -43,7 +41,7 @@ namespace EasyCommand.AspNetCore
         private static void RegisterCommands(this IServiceCollection services, IEnumerable<Type> allTypes)
         {
             var types = allTypes.Where(t =>
-                typeof(IAsyncCommand).IsAssignableFrom(t));
+            typeof(IAsyncCommand).IsAssignableFrom(t));
 
             foreach (var type in types)
             {
@@ -51,11 +49,12 @@ namespace EasyCommand.AspNetCore
             }
         }
 
-        private static void RegisterRunningBeforeCommands(this IServiceCollection services, CommandRunningConfiguration configuration)
+        private static void RegisterHandlers(this IServiceCollection services)
         {
-            foreach (var runBefore in configuration.toRunBeforeCommands)
+            if (CommandRunningConfiguration.Handlers is null) return;
+            for (var i = 0; i < CommandRunningConfiguration.Handlers.Length; i++)
             {
-                services.AddTransient(typeof(IRunBeforeCommand), runBefore);
+                services.AddTransient(CommandRunningConfiguration.Handlers[i], CommandRunningConfiguration.Handlers[i]);
             }
         }
     }
