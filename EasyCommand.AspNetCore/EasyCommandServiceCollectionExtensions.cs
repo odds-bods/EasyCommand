@@ -12,7 +12,7 @@ namespace EasyCommand.AspNetCore
         {
             var types = assemblyObject.GetType().Assembly.GetTypes();
 
-            return SetupEasyCommand(services, types, buildConfiguration);
+            return services.SetupEasyCommand(types, buildConfiguration);
 
         }
 
