@@ -25,7 +25,7 @@ namespace EasyCommand.Examples.AspNetCore
 
             services.AddTransient<IRandomService, RandomService>();
 
-            services.AddEasyCommand(c=>c.RunBeforeCommand<CommandLogger>());
+            services.AddEasyCommand();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
