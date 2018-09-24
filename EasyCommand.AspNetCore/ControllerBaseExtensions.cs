@@ -124,7 +124,7 @@ namespace EasyCommand.AspNetCore
                 }
                 catch (Exception e)
                 {
-                    new Exception($"Unable to execute AfterExecutionAsync on {handlers[i].GetType()} {(hasAdditionalInformation ? $"after {additionalFailureInformation}" : null)}", e);
+                    throw new Exception($"Unable to execute AfterExecutionAsync on {handlers[i].GetType()} {(hasAdditionalInformation ? $"after {additionalFailureInformation}" : null)}", e);
                 }
             }
         }
