@@ -13,15 +13,15 @@ namespace EasyCommand.AspNetCore
         }
 
         public static async Task<TInjectedResult> ExecuteAsync<TRequest, TResult, TInjectedRequest, TInjectedResult>
-            (this IAsyncAspCommand<TRequest, TResult> command, IAsyncAspCommand<TInjectedRequest, TInjectedResult> injectedCommand)
+            (this IAsyncAspCommand<TRequest, TResult> extendedCommand, IAsyncAspCommand<TInjectedRequest, TInjectedResult> command)
         {
-            return await injectedCommand.ExecuteExternalAsync(default(TInjectedRequest));
+            return await command.ExecuteExternalAsync(default(TInjectedRequest));
         }
 
         public static async Task<TInjectedResult> ExecuteAsync<TRequest, TResult, TInjectedRequest, TInjectedResult>
-               (this IAsyncAspCommand<TRequest, TResult> command, IAsyncAspCommand<TInjectedRequest, TInjectedResult> injectedCommand, TInjectedRequest request)
+               (this IAsyncAspCommand<TRequest, TResult> extendedCommand, IAsyncAspCommand<TInjectedRequest, TInjectedResult> command, TInjectedRequest request)
         { 
-            return await injectedCommand.ExecuteExternalAsync(request);
+            return await command.ExecuteExternalAsync(request);
         }
 
         public static TCommand Command<TCommand>(this IAsyncCommand command) where TCommand : IAsyncCommand
